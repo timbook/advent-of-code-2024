@@ -3,7 +3,7 @@ import re
 raw = open('input.txt', 'r').readlines()
 data = [line.strip() for line in raw]
 
-pattern = "mul\((\d{1,3}),(\d{1,3})\)"
+pattern = r"mul\((\d{1,3}),(\d{1,3})\)"
 
 total = 0
 for line in data:
@@ -11,8 +11,8 @@ for line in data:
 
 print(f"A ::: {total}")
 
-p1 = "(mul)\((\d{1,3}),(\d{1,3})\)"
-p2 = "(don\'t|do)\(\)"
+p1 = r"(mul)\((\d{1,3}),(\d{1,3})\)"
+p2 = r"(don\'t|do)\(\)"
 pattern = f"{p1}|{p2}"
 
 def process_mul(op):
