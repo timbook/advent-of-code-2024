@@ -1,7 +1,6 @@
 from itertools import product
 from collections import deque
 
-#  file = 'sample.txt'
 file = 'input.txt'
 raw = open(file, 'r').readlines()
 
@@ -25,7 +24,6 @@ class Equation:
             ops = deque(ops)
             vec = deque(self.nums.copy())
             while ops:
-                #  print(f"vec = {vec}")
                 op = {'*': mul, '+': add}[ops.popleft()]
                 a = vec.popleft()
                 b = vec.popleft()
@@ -43,7 +41,6 @@ class Equation:
             ops = deque(ops)
             vec = deque(self.nums.copy())
             while ops:
-                #  print(f"vec = {vec}")
                 op = {'*': mul, '+': add, '|': cat}[ops.popleft()]
                 a = vec.popleft()
                 b = vec.popleft()
