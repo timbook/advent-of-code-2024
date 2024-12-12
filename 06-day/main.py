@@ -65,9 +65,37 @@ class Grid:
         self.mx[new_r, new_c] = sym
         return True
 
-g = Grid(mx)
+g = Grid(mx.copy())
 while g.move():
     pass
 
 sol = len(g.hist)
 print(f"A ::: {sol}")
+
+# Get origin
+xs, ys = np.where(
+    (mx == 'v') | \
+    (mx == '^') | \
+    (mx == '>') | \
+    (mx == '<')
+)
+origin = xs[0], ys[0]
+
+R, C = mx.shape
+tot = R*C
+loop_points = set()
+
+for i, (r, c) in enumerate(g.hist - {origin}):
+    if i % 100 == 0:
+        print(f"Iteration: {i + 1}")
+    mx_new = mx.copy()
+    mx_new[r, c] = '#'
+    g_new = Grid(mx_new)
+    count = 0
+    while g_new.move():
+        count += 1
+        if tot < count:
+            loop_points.add((r, c))
+            break
+
+print(f"B ::: {len(loop_points)}")
